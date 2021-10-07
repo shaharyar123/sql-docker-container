@@ -1,0 +1,19 @@
+version: "3"
+services:
+  mysql:
+    build: ./db
+    container_name: mysql_default
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: [name]
+      MYSQL_USER: root
+      MYSQL_PASSWORD: [password]
+      MYSQL_ROOT_PASSWORD: [password]
+    volumes:
+      - "dbdata:/var/lib/mysql"
+      - "./db/scripts:/var/db"
+    restart: always
+volumes:
+  dbdata:
+    driver: local
